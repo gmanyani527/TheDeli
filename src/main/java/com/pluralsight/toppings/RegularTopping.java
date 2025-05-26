@@ -1,9 +1,19 @@
 package com.pluralsight.toppings;
 
-public class RegularTopping extends Topping{
 
-    public RegularTopping(String name){
-        super(name);
+import com.pluralsight.enums.RegularToppingType;
+
+public class RegularTopping extends Topping{
+    private RegularToppingType type;
+
+    public RegularTopping(RegularToppingType type){
+        super(type.name());
+        this.type = type;
+
+    }
+
+    public RegularToppingType getType() {
+        return type;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.pluralsight.enums;
 
-public enum RegulatToppingType {
+public enum RegularToppingType {
     LETTUCE,
     PEPPERS,
     ONIONS,
