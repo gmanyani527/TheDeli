@@ -4,6 +4,7 @@ import com.pluralsight.enums.CheeseType;
 import com.pluralsight.enums.MeatType;
 import com.pluralsight.enums.RegularToppingType;
 import com.pluralsight.enums.SauceType;
+import com.pluralsight.model.Drink;
 import com.pluralsight.model.Order;
 import com.pluralsight.model.Sandwich;
 import com.pluralsight.toppings.*;
@@ -76,6 +77,8 @@ public class ConsuleUI {
             switch (choice) {
                 case 1:
                     Sandwich sandwich = buildSandwich();
+                case 2:
+                    Drink drink = chooseDrink();
             }
         }
     }
@@ -180,6 +183,47 @@ public class ConsuleUI {
 
         System.out.print("Do you want extra? (yes/no): ");
         return scanner.nextLine().equalsIgnoreCase("yes");
+    }
+
+
+    public Drink chooseDrink(){
+        Scanner scanner = new Scanner(System.in);
+        // Choose Bread
+        System.out.println("Choose Drink: ");
+        System.out.println("┌────────────────────────┐");
+        System.out.println("│ 1) Coco-cola           │");
+        System.out.println("│ 2) Pepsi               │");
+        System.out.println("│ 3) Fanta               │");
+        System.out.println("│ 4) Root Beer           │");
+        System.out.println("└────────────────────────┘");
+        System.out.print("Enter your choice (1-4): ");
+
+        int drinkChoice = Integer.parseInt(scanner.nextLine());
+        String drinks = "";
+
+        System.out.println("Choose size (1=Small, 2=Medium, 3=Large): ");
+        String size = scanner.nextLine();
+
+        switch (drinkChoice) {
+            case 1:
+                drinks = "Coco-cola";
+                break;
+            case 2:
+                drinks = "Pepsi";
+                break;
+            case 3:
+                drinks = "Fanta";
+                break;
+            case 4:
+                drinks = "Root Beer";
+                break;
+            default:
+                System.out.println("Invalid choice. Defaulting to water.");
+                drinks = "Water";
+        }
+
+        Drink drink = new Drink(drinks, size);
+    return drink;
     }
 }
 
