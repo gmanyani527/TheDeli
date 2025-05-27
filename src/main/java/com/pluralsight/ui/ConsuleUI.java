@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConsuleUI {
-    Scanner scanner;
+    Scanner scanner = new Scanner(System.in);
 
     public void display() {
         Scanner scanner = new Scanner(System.in);
@@ -27,25 +27,16 @@ public class ConsuleUI {
             System.out.println("Enter your choice: ");
             String input = scanner.nextLine();
 
-            switch (input) {
-
-                case "1":
-                    displayOrderScreen();
-                    break;
-                case "2":
-                    running = false;
-                    break;
-
-
-            }
-
 
         }
+
 
     }
 
 
     public void displayHomeScreen() {
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
         System.out.println("==== Home ====");
         System.out.println("1) New Order");
         System.out.println("0) Exit");
@@ -57,8 +48,8 @@ public class ConsuleUI {
                 displayOrderScreen();
                 break;
             case 0:
-                running = false;
                 System.out.println("Goodbye!");
+                running = false;
                 break;
             default:
                 System.out.println("Invalid option.");
@@ -71,6 +62,7 @@ public class ConsuleUI {
 
         Order currentOrder = new Order();
         boolean ordering = true;
+
 
         while (ordering) {
             System.out.println("\n ******* Order Screen *******");
@@ -89,6 +81,7 @@ public class ConsuleUI {
     }
 
     public Sandwich buildSandwich() {
+        Scanner scanner = new Scanner(System.in);
         // Choose Bread
         System.out.println("Choose Bread: ");
         System.out.println("┌────────────────────────┐");
@@ -103,10 +96,18 @@ public class ConsuleUI {
         String bread = "";
 
         switch (breadChoice) {
-            case 1: bread = "White"; break;
-            case 2: bread = "Wheat"; break;
-            case 3: bread = "Rye"; break;
-            case 4: bread = "Wrap"; break;
+            case 1:
+                bread = "White";
+                break;
+            case 2:
+                bread = "Wheat";
+                break;
+            case 3:
+                bread = "Rye";
+                break;
+            case 4:
+                bread = "Wrap";
+                break;
             default:
                 System.out.println("Invalid choice. Defaulting to White Bread.");
                 bread = "White";
@@ -133,7 +134,7 @@ public class ConsuleUI {
         System.out.println("Choose a cheese:");
         CheeseType[] cheeses = CheeseType.values();
         for (int i = 0; i < cheeses.length; i++) {
-            System.out.println((i+1) + ")" + cheeses[i].getDisplayName());
+            System.out.println((i + 1) + ")" + cheeses[i].getDisplayName());
         }
         int choice1 = Integer.parseInt(scanner.nextLine());
         CheeseType selectedCheese = cheeses[choice - 1];
@@ -141,9 +142,9 @@ public class ConsuleUI {
         toppings.add(new Cheese(selectedCheese, extraCheese));
 
 //  Regular Topping
-       boolean stillAdding = true;
+        boolean stillAdding = true;
         System.out.println("Choose the regular toppings:");
-        while(stillAdding) {
+        while (stillAdding) {
             RegularToppingType[] regularToppings = RegularToppingType.values();
             for (int i = 0; i < regularToppings.length; i++) {
                 System.out.println((i + 1) + ")" + regularToppings[i].getDisplayName());
@@ -154,14 +155,14 @@ public class ConsuleUI {
 
             System.out.println("Any other topping? ");
             String userInput = scanner.nextLine();
-            if(userInput.equalsIgnoreCase("no")){
+            if (userInput.equalsIgnoreCase("no")) {
                 stillAdding = false;
             }
         }
 // Sauces
         System.out.println("Choose a Sauce");
         SauceType[] sauces = SauceType.values();
-        for (int i = 0; i < sauces.length ; i++) {
+        for (int i = 0; i < sauces.length; i++) {
             System.out.println((i + 1) + ")" + sauces[i].getDisplayName());
         }
         int choice3 = Integer.parseInt(scanner.nextLine());
@@ -169,17 +170,19 @@ public class ConsuleUI {
         toppings.add(new Sauce(selctedSauce));
 
 
-    Sandwich sandwich = new Sandwich(size, bread, toppings);
-    return sandwich;
+        Sandwich sandwich = new Sandwich(size, bread, toppings);
+        return sandwich;
     }
 
 
     private boolean askExtra() {
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Do you want extra? (yes/no): ");
         return scanner.nextLine().equalsIgnoreCase("yes");
     }
-
-
 }
+
+
+
 
