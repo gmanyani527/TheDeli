@@ -2,7 +2,7 @@ package com.pluralsight.enums;
 
 public enum MeatType {
     STEAK("Steak"),
-    HAM ("Swiss"),
+    HAM ("Ham"),
     SALAMI ("Salami"),
     ROAST_BEEF ("Roast Beef"),
     CHICKEN ("Chicken"),

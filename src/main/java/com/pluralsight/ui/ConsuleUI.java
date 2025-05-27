@@ -1,5 +1,6 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.enums.CheeseType;
 import com.pluralsight.enums.MeatType;
 import com.pluralsight.model.Order;
 import com.pluralsight.model.Sandwich;
@@ -106,7 +107,10 @@ public class ConsuleUI {
 
         boolean extraMeat = askExtra();
         toppings.add(new Meat(selectedMeat, extraMeat));
+// Cheese
 
+        System.out.println("Choose a cheese:");
+        CheeseType[] cheeses = CheeseType.values();
 
     }
 
