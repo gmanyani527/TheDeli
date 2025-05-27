@@ -2,10 +2,11 @@ package com.pluralsight.ui;
 
 import com.pluralsight.enums.CheeseType;
 import com.pluralsight.enums.MeatType;
+import com.pluralsight.enums.RegularToppingType;
+import com.pluralsight.enums.SauceType;
 import com.pluralsight.model.Order;
 import com.pluralsight.model.Sandwich;
-import com.pluralsight.toppings.Meat;
-import com.pluralsight.toppings.Topping;
+import com.pluralsight.toppings.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -88,10 +89,30 @@ public class ConsuleUI {
     }
 
     public Sandwich buildSandwich() {
-        System.out.println(" Choose Bread: ");
-        String bread = scanner.nextLine();
+        // Choose Bread
+        System.out.println("Choose Bread: ");
+        System.out.println("┌────────────────────────┐");
+        System.out.println("│ 1) White Bread         │");
+        System.out.println("│ 2) Wheat Bread         │");
+        System.out.println("│ 3) Rye Bread           │");
+        System.out.println("│ 4) Wrap                │");
+        System.out.println("└────────────────────────┘");
+        System.out.print("Enter your choice (1-4): ");
 
+        int breadChoice = Integer.parseInt(scanner.nextLine());
+        String bread = "";
 
+        switch (breadChoice) {
+            case 1: bread = "White"; break;
+            case 2: bread = "Wheat"; break;
+            case 3: bread = "Rye"; break;
+            case 4: bread = "Wrap"; break;
+            default:
+                System.out.println("Invalid choice. Defaulting to White Bread.");
+                bread = "White";
+        }
+
+// Choose Size
         System.out.println("Choose size (1=Small, 2=Medium, 3=Large): ");
         int size = Integer.parseInt(scanner.nextLine());
 
@@ -111,7 +132,45 @@ public class ConsuleUI {
 
         System.out.println("Choose a cheese:");
         CheeseType[] cheeses = CheeseType.values();
+        for (int i = 0; i < cheeses.length; i++) {
+            System.out.println((i+1) + ")" + cheeses[i].getDisplayName());
+        }
+        int choice1 = Integer.parseInt(scanner.nextLine());
+        CheeseType selectedCheese = cheeses[choice - 1];
+        boolean extraCheese = askExtra();
+        toppings.add(new Cheese(selectedCheese, extraCheese));
 
+//  Regular Topping
+       boolean stillAdding = true;
+        System.out.println("Choose the regular toppings:");
+        while(stillAdding) {
+            RegularToppingType[] regularToppings = RegularToppingType.values();
+            for (int i = 0; i < regularToppings.length; i++) {
+                System.out.println((i + 1) + ")" + regularToppings[i].getDisplayName());
+            }
+            int choice2 = Integer.parseInt(scanner.nextLine());
+            RegularToppingType selectedTopping = regularToppings[choice - 1];
+            toppings.add(new RegularTopping(selectedTopping));
+
+            System.out.println("Any other topping? ");
+            String userInput = scanner.nextLine();
+            if(userInput.equalsIgnoreCase("no")){
+                stillAdding = false;
+            }
+        }
+// Sauces
+        System.out.println("Choose a Sauce");
+        SauceType[] sauces = SauceType.values();
+        for (int i = 0; i < sauces.length ; i++) {
+            System.out.println((i + 1) + ")" + sauces[i].getDisplayName());
+        }
+        int choice3 = Integer.parseInt(scanner.nextLine());
+        SauceType selctedSauce = sauces[choice - 1];
+        toppings.add(new Sauce(selctedSauce));
+
+
+    Sandwich sandwich = new Sandwich(size, bread, toppings);
+    return sandwich;
     }
 
 
