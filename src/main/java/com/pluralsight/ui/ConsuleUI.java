@@ -11,11 +11,17 @@ import com.pluralsight.model.Sandwich;
 import com.pluralsight.toppings.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsuleUI {
     Scanner scanner = new Scanner(System.in);
+    private List<Sandwich> sandwich;
+    private List<Chips> chips;
+    private List<Drink> drinks;
 
+
+    Order currentOrder = new Order(sandwich, chips, drinks);
     public void display() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nPress ENTER to continue...");
@@ -62,7 +68,7 @@ public class ConsuleUI {
 
     public void displayOrderScreen() {
 
-        Order currentOrder = new Order();
+
         boolean ordering = true;
 
 
@@ -84,14 +90,17 @@ public class ConsuleUI {
                     break;
                 case 3:
                     Chips chip = chooseChips();
+                    break;
                 case 4:
                     displayCheckout();
+                    break;
 
             }
         }
     }
 
     public Sandwich buildSandwich() {
+        List<Sandwich> sandwiches = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         // Choose Bread
         System.out.println("Choose Bread: ");
@@ -182,6 +191,7 @@ public class ConsuleUI {
 
 
         Sandwich sandwich = new Sandwich(size, bread, toppings);
+        currentOrder.addSandwich(sandwich);
         return sandwich;
     }
 
@@ -231,6 +241,7 @@ public class ConsuleUI {
         }
 
         Drink drink = new Drink(drinks, size);
+        currentOrder.addDrink(drink);
     return drink;
     }
 
@@ -268,12 +279,13 @@ public class ConsuleUI {
         }
 
         Chips chip = new Chips(chips);
+        currentOrder.addChips(chip);
         return chip;
 
     }
 
     public void displayCheckout(){
-
+        currentOrder.getOrderDetails();
 
     }
 

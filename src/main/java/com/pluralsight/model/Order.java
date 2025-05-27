@@ -13,7 +13,7 @@ public class Order {
 
 
 
-    public Order() {
+    public Order(List<Sandwich> sandwiches, List<Chips> chips, List<Drink> drinks) {
         this.sandwiches = new ArrayList<>();
         this.drinks = new ArrayList<>();
         this.chips = new ArrayList<>();
@@ -50,7 +50,9 @@ public class Order {
     }
 
     public void getOrderDetails() {
-        System.out.println("----- Order Summary -----");
+        System.out.println("┌──────────────────────────────┐");
+        System.out.println("│         Order Summary        │");
+        System.out.println("└──────────────────────────────┘");
 
         for (int i = 0; i < sandwiches.size(); i++) {
             System.out.println("Sandwich #" + (i + 1) + ":");
