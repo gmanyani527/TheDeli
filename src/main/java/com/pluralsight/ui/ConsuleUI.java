@@ -84,6 +84,8 @@ public class ConsuleUI {
                     break;
                 case 3:
                     Chips chip = chooseChips();
+                case 4:
+                    displayCheckout();
 
             }
         }
@@ -267,6 +269,11 @@ public class ConsuleUI {
 
         Chips chip = new Chips(chips);
         return chip;
+
+    }
+
+    public void displayCheckout(){
+
 
     }
 
