@@ -13,8 +13,9 @@ public class Sandwich {
     private boolean extraMeat;
 
 
-    public Sandwich(int size, ArrayList<Topping> toppings) {
+    public Sandwich(int size, String bread, ArrayList<Topping> toppings) {
         this.size = size;
+        this.bread = bread;
         this.toppings = toppings;
     }
 
@@ -31,7 +32,7 @@ public class Sandwich {
       // Will Return String for the Get Details
     public void getDetails(){
         System.out.println("Bread: " + bread);
-        System.out.println("Size: " + getSize());
+        System.out.println("Size: " + getSizeAsString());
         System.out.println("Toppings:");
         for (Topping t : toppings) {
             System.out.println(" - " + t.getName());
@@ -43,8 +44,10 @@ public class Sandwich {
 
     public double getCalculatePrice(){
         double total = 0.0;
-        
 
+        for (Topping topping : toppings) {
+            total += topping.getCost(getSizeAsString());
+        }
         return total;
     }
     public void addTopping(Topping topping) {
@@ -60,8 +63,17 @@ public class Sandwich {
     }
 
 
-    public int getSize() {
-        return size;
+    private String getSizeAsString() {
+        switch (size) {
+            case 1:
+                return "Small";
+            case 2:
+                return "Medium";
+            case 3:
+                return "Large";
+            default:
+                return "Unknown";
+        }
     }
 
     public void setSize(int size) {
