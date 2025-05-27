@@ -9,7 +9,7 @@ public class Order {
 
    private List<Sandwich> sandwiches;
    private List<Chips> chips;
-   private List<Drink> drink;
+   private List<Drink> drinks;
 
 
 
@@ -27,7 +27,7 @@ public class Order {
         drinks.add(drink);
     }
 
-    public void addChips(Chip chip) {
+    public void addChips(Chips chip) {
         chips.add(chip);
     }
 
@@ -39,11 +39,11 @@ public class Order {
         }
 
         for (Drink drink : drinks) {
-            total += drink.getCost();
+            total += drink.getCost(drink.getName());
         }
 
-        for (Chip chip : chips) {
-            total += chip.getCost();
+        for (Chips chip : chips) {
+            total += chip.getPrice();
         }
 
         return total;
@@ -58,11 +58,11 @@ public class Order {
         }
 
         for (Drink drink : drinks) {
-            System.out.println("Drink: " + drink.getType() + " ($" + drink.getCost() + ")");
+            System.out.println("Drink: " + drink.getName() + " ($" + drink.getCost(drink.getSize()) + ")");
         }
 
-        for (Chip chip : chips) {
-            System.out.println("Chips: " + chip.getType() + " ($" + chip.getCost() + ")");
+        for (Chips chip : chips) {
+            System.out.println("Chips: " + chip.getFlavor() + " ($" + chip.getPrice() + ")");
         }
 
         System.out.printf("TOTAL: $%.2f\n", calculateTotal());
@@ -71,5 +71,5 @@ public class Order {
     // Optional: getters if you need them
     public List<Sandwich> getSandwiches() { return sandwiches; }
     public List<Drink> getDrinks() { return drinks; }
-    public List<Chip> getChips() { return chips; }
+    public List<Chips> getChips() { return chips; }
 }
