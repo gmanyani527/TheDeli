@@ -4,6 +4,7 @@ import com.pluralsight.enums.CheeseType;
 import com.pluralsight.enums.MeatType;
 import com.pluralsight.enums.RegularToppingType;
 import com.pluralsight.enums.SauceType;
+import com.pluralsight.model.Chips;
 import com.pluralsight.model.Drink;
 import com.pluralsight.model.Order;
 import com.pluralsight.model.Sandwich;
@@ -77,8 +78,13 @@ public class ConsuleUI {
             switch (choice) {
                 case 1:
                     Sandwich sandwich = buildSandwich();
+                    break;
                 case 2:
                     Drink drink = chooseDrink();
+                    break;
+                case 3:
+                    Chips chip = chooseChips();
+
             }
         }
     }
@@ -225,6 +231,45 @@ public class ConsuleUI {
         Drink drink = new Drink(drinks, size);
     return drink;
     }
+
+    public Chips chooseChips(){
+        Scanner scanner = new Scanner(System.in);
+        // Choose Bread
+        System.out.println("Choose Drink: ");
+        System.out.println("┌────────────────────────┐");
+        System.out.println("│ 1) Potato Chips        │");
+        System.out.println("│ 2) Sun Chips           │");
+        System.out.println("│ 3) Doritos             │");
+        System.out.println("│ 4) Cheetos             │");
+        System.out.println("└────────────────────────┘");
+        System.out.print("Enter your choice (1-4): ");
+
+        int chipChoice = Integer.parseInt(scanner.nextLine());
+        String chips = "";
+
+        switch (chipChoice) {
+            case 1:
+                chips = "Potato Chips";
+                break;
+            case 2:
+                chips = "Sun Chips";
+                break;
+            case 3:
+                chips = "Doritos";
+                break;
+            case 4:
+                chips = "Cheetos";
+                break;
+            default:
+                System.out.println("Invalid choice. Defaulting to Nacho Chips.");
+                chips = "Nacho Chips";
+        }
+
+        Chips chip = new Chips(chips);
+        return chip;
+
+    }
+
 }
 
 
