@@ -32,9 +32,7 @@ public class ConsuleUI {
         while (running) {
             displayHomeScreen();
 
-            System.out.println("Enter your choice: ");
-            String input = scanner.nextLine();
-
+            running = false;
 
         }
 
@@ -57,7 +55,6 @@ public class ConsuleUI {
                 break;
             case 0:
                 System.out.println("Goodbye!");
-                running = false;
                 break;
             default:
                 System.out.println("Invalid option.");
