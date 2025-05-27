@@ -1,26 +1,31 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.enums.MeatType;
+import com.pluralsight.model.Order;
 import com.pluralsight.model.Sandwich;
+import com.pluralsight.toppings.Meat;
+import com.pluralsight.toppings.Topping;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConsuleUI {
     Scanner scanner;
 
-    public void display(){
+    public void display() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nPress ENTER to continue...");
         scanner.nextLine();
 
         boolean running = true;
 
-        while(running){
+        while (running) {
             displayHomeScreen();
 
             System.out.println("Enter your choice: ");
             String input = scanner.nextLine();
 
-            switch(input){
+            switch (input) {
 
                 case "1":
                     displayOrderScreen();
@@ -30,9 +35,7 @@ public class ConsuleUI {
                     break;
 
 
-
             }
-
 
 
         }
@@ -40,7 +43,7 @@ public class ConsuleUI {
     }
 
 
-    public void displayHomeScreen(){
+    public void displayHomeScreen() {
         System.out.println("==== Home ====");
         System.out.println("1) New Order");
         System.out.println("0) Exit");
@@ -62,12 +65,12 @@ public class ConsuleUI {
     }
 
 
-    public void displayOrderScreen(){
+    public void displayOrderScreen() {
 
         Order currentOrder = new Order();
-        boolean orderng = true;
+        boolean ordering = true;
 
-        while(ordering) {
+        while (ordering) {
             System.out.println("\n ******* Order Screen *******");
             System.out.println("1. Add Sandwich");
             System.out.println("2. Add Drink");
@@ -83,9 +86,37 @@ public class ConsuleUI {
         }
     }
 
-    public void
+    public Sandwich buildSandwich() {
+        System.out.println(" Choose Bread: ");
+        String bread = scanner.nextLine();
 
 
+        System.out.println("Choose size (1=Small, 2=Medium, 3=Large): ");
+        int size = Integer.parseInt(scanner.nextLine());
+
+        ArrayList<Topping> toppings = new ArrayList<>();
+// Meat
+        System.out.println("Choose a meat:");
+        MeatType[] meats = MeatType.values();
+        for (int i = 0; i < meats.length; i++) {
+            System.out.println((i + 1) + ") " + meats[i].getDisplayName());
+        }
+        int choice = Integer.parseInt(scanner.nextLine());
+        MeatType selectedMeat = meats[choice - 1];
+
+        boolean extraMeat = askExtra();
+        toppings.add(new Meat(selectedMeat, extraMeat));
+
+
+    }
+
+
+    private boolean askExtra() {
+
+        System.out.print("Do you want extra? (yes/no): ");
+        return scanner.nextLine().equalsIgnoreCase("yes");
+    }
 
 
 }
+
