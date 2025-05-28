@@ -1,5 +1,6 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.data.OrderFileManager;
 import com.pluralsight.enums.CheeseType;
 import com.pluralsight.enums.MeatType;
 import com.pluralsight.enums.RegularToppingType;
@@ -19,9 +20,9 @@ public class ConsuleUI {
     private List<Sandwich> sandwich;
     private List<Chips> chips;
     private List<Drink> drinks;
+    OrderFileManager receipts = new OrderFileManager();
 
-
-    Order currentOrder = new Order(sandwich, chips, drinks);
+    Order currentOrder = new Order();
     public void display() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nPress ENTER to continue...");
@@ -283,6 +284,7 @@ public class ConsuleUI {
 
     public void displayCheckout(){
         currentOrder.getOrderDetails();
+
 
     }
 

@@ -1,7 +1,10 @@
 package com.pluralsight.model;
 
+import com.pluralsight.data.OrderFileManager;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Order {
 
@@ -10,10 +13,10 @@ public class Order {
     private List<Sandwich> sandwiches;
     private List<Chips> chips;
     private List<Drink> drinks;
+    private Scanner scanner = new Scanner(System.in);
 
 
-
-    public Order(List<Sandwich> sandwiches, List<Chips> chips, List<Drink> drinks) {
+    public Order() {
         this.sandwiches = new ArrayList<>();
         this.drinks = new ArrayList<>();
         this.chips = new ArrayList<>();
@@ -68,6 +71,15 @@ public class Order {
         }
 
         System.out.printf("TOTAL: $%.2f\n", calculateTotal());
+        System.out.print("Confirm order? (yes/no): ");
+        String input = scanner.nextLine();
+
+        if (input.equalsIgnoreCase("yes")) {
+           OrderFileManager.generateReceipt(this); // ✅ Save to file
+            System.out.println("Order completed. Returning to Home.");
+        } else {
+            System.out.println("Order canceled.");
+        }
     }
 
     // Optional: getters if you need them
