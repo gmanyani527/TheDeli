@@ -31,6 +31,41 @@ public static void createReceiptsFolder(){
 
 }
 
+public static void generateReceipt(Order order){
+    createReceiptsFolder();
+    String timestamp = new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date());
+    String fileName = "receipts/" + timestamp + ".txt";
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+        writer.write("===== DELIcious Receipt =====\n\n");
+
+        int i = 1;
+        for (Sandwich sandwich : order.getSandwiches()) {
+            writer.write("Sandwich " + i++ + ":\n");
+            writer.write(sandwich.getDetails() + "\n"); // assumes getDetails() is implemented
+        }
+
+        for (Drink drink : order.getDrinks()) {
+            writer.write("Drink: " + drink.getSize() + " - " + drink.getName() + "\n");
+        }
+
+        for (Chips chip : order.getChips()) {
+            writer.write("Chip: " + chip.getFlavor() + "\n");
+        }
+
+        writer.write("\nTotal Price: $" + String.format("%.2f", order.calculateTotal()) + "\n");
+        writer.write("Thank you for choosing DELIcious!\n");
+
+        System.out.println(" Receipt saved to: " + fileName);
+
+    } catch (IOException e) {
+        System.out.println(" Error writing receipt: " + e.getMessage());
+    }
+
+}
+
+
+
 
 
 

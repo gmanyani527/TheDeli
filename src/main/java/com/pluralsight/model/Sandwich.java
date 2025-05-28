@@ -30,7 +30,7 @@ public class Sandwich {
     }
 
       // Will Return String for the Get Details
-    public void getDetails(){
+   /* public void getDetails(){
         System.out.println("Bread: " + bread);
         System.out.println("Size: " + getSizeAsString());
         System.out.println("Toppings:");
@@ -40,7 +40,22 @@ public class Sandwich {
         System.out.println("Extra Cheese: " + (extraCheese ? "Yes" : "No"));
         System.out.println("Extra Meat: " + (extraMeat ? "Yes" : "No"));
         System.out.println("Total Price: $" + getCalculatePrice());
+    } */
+    //Revised getDetails method
+    public String getDetails() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Bread: ").append(bread).append("\n");
+        sb.append("Size: ").append(getSizeAsString()).append("\n");
+        sb.append("Toppings:\n");
+        for (Topping t : toppings) {
+            sb.append(" - ").append(t.getName()).append("\n");
+        }
+        sb.append("Extra Cheese: ").append(extraCheese ? "Yes" : "No").append("\n");
+        sb.append("Extra Meat: ").append(extraMeat ? "Yes" : "No").append("\n");
+        sb.append("Total Price: $").append(String.format("%.2f", getCalculatePrice())).append("\n");
+        return sb.toString();
     }
+
 
     public double getCalculatePrice(){
         double total = 0.0;
