@@ -5,7 +5,7 @@
 **DELIcious** is a Java console-based Point of Sale (POS) application for a custom sandwich shop. It enables customers to fully customize their orders with sandwiches, drinks, and chips, and receive itemized receipts. Built using object-oriented principles, the project simulates a real-world restaurant workflow and features advanced components like signature sandwiches, dynamic pricing based on size and extras, and file-based receipt management.
 
 ---
-
+[Class Diagram](TheDeliClassDiagram.png)
 ## 🧱 Key Features
 
 * Customize Sandwiches with:
@@ -162,4 +162,4 @@ git clone https://github.com/yourusername/DELIcious.git
 
 ## 📂 Author
 
-Created by Wardah Salman for the Pluralsight Capstone 2 Project.
+Created by Guriqbal Singh for the Capstone 2 Project.
