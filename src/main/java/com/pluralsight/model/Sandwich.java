@@ -94,6 +94,15 @@ public class Sandwich {
     public void setSize(int size) {
         this.size = size;
     }
+    private boolean toasted;
+
+    public void setToasted(boolean toasted) {
+        this.toasted = toasted;
+    }
+
+    public boolean isToasted() {
+        return toasted;
+    }
 
 
 
