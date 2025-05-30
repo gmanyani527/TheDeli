@@ -1,180 +1,165 @@
-# DELIcious Point-of-Sale Ordering System
+# 🥪 DELIcious - Sandwich POS Ordering System
 
-## 📌 Description of the Project
+## 📌 Project Description
 
-The **DELIcious Point-of-Sale System** is a Java console-based application designed for a growing custom sandwich shop. Customers can fully customize their sandwich orders by selecting bread types, sandwich sizes, toppings (regular and premium), and optional extras like drinks and chips. This system replaces the manual paper-based process and simulates a real-world deli ordering experience.
-
-The application emphasizes **object-oriented programming**, **menu-driven user interfaces**, **file I/O**, **inheritance**, **encapsulation**, and **realistic pricing logic**. Orders are saved with time-stamped receipts in a dedicated folder.
+**DELIcious** is a Java console-based Point of Sale (POS) application for a custom sandwich shop. It enables customers to fully customize their orders with sandwiches, drinks, and chips, and receive itemized receipts. Built using object-oriented principles, the project simulates a real-world restaurant workflow and features advanced components like signature sandwiches, dynamic pricing based on size and extras, and file-based receipt management.
 
 ---
 
-## 📊 Class Diagram
+## 🧱 Key Features
 
-*[Class Diagram](DELIciousClassDiagram.png)*
+* Customize Sandwiches with:
 
-Key Classes:
+  * Bread (White, Wheat, Rye, Wrap)
+  * Size (4", 8", 12")
+  * Toppings: Regular and Premium (Meat, Cheese, Sauce)
+  * Toasted or Not
+* Add multiple sandwiches, drinks, and chips per order
+* Choose from Signature Sandwiches:
 
-* `Order`
-* `Sandwich`
-* `Topping` (Abstract)
-
-    * `Meat`
-    * `Cheese`
-    * `RegularTopping`
-    * `Sauce`
-* `Drink`
-* `Chip`
-* `ConsoleUI`
-* `OrderFileManager`
-* `Size`, `BreadType`, `MeatType`, `CheeseType`, etc. (enums)
+  * BLT
+  * Philly Cheese Steak
+  * Veggie Delight
+* Ability to customize signature sandwiches (add/remove toppings)
+* Full receipt generation with timestamped filenames
+* Accurate price calculation based on item type and size
 
 ---
 
-## 🧑‍🍳 User Stories
+## 🧑‍💼 User Stories
 
-* As a customer, I want to place a custom sandwich order from multiple options.
-* As a customer, I want to choose my bread and sandwich size.
-* As a customer, I want to choose meats, cheeses, toppings, and sauces with optional extras.
-* As a customer, I want to add multiple sandwiches to a single order.
-* As a customer, I want to add drinks and chips to my order.
-* As a customer, I want to view a clear order summary before confirming.
-* As a customer, I want my order to be saved with a receipt named by the time it was placed.
+* As a customer, I want to:
 
----
-
-## ⚙️ Setup
-
-### Prerequisites
-
-* **IntelliJ IDEA**: [Download IntelliJ](https://www.jetbrains.com/idea/)
-* **Java SDK 17+**: Required for project compatibility
-
-### GitHub Capstone Setup
-
-1. Create a public GitHub repository with a meaningful name (e.g., `DELIcious`)
-2. Clone the repo into `C:/pluralsight/LearnToCode_Capstones/DELIcious`
-3. Create a GitHub Project Board with tasks based on user stories
-
-### Running the Application
-
-1. Open the project in IntelliJ IDEA
-2. Locate and run the `Main.java` file (entry point for the application)
-3. Follow the console prompts to build orders
+  * Build my own sandwich with detailed options.
+  * Choose a pre-defined signature sandwich.
+  * Add chips and drinks.
+  * View an order summary with pricing.
+  * Cancel or confirm my order.
+  * Receive a saved receipt in a `receipts` folder.
 
 ---
 
-## 🛠️ Technologies Used
+## 💸 Pricing Model
 
-* **Java 17+** – Programming Language
-* `java.util.*` – ArrayList, Scanner, Enum
-* `java.io.*` – FileWriter, BufferedWriter for receipts
-* **OOP Concepts** – Inheritance, Abstraction, Polymorphism, Encapsulation
-* **File I/O** – Receipt persistence in `/receipts` folder
+| Item              | 4"       | 8"       | 12"      |
+| ----------------- | -------- | -------- | -------- |
+| Sandwich (Base)   | \$5.50   | \$7.00   | \$8.50   |
+| Meat (per type)   | \$1.00   | \$2.00   | \$3.00   |
+| Extra Meat        | \$0.50   | \$1.00   | \$1.50   |
+| Cheese (per type) | \$0.75   | \$1.50   | \$2.25   |
+| Extra Cheese      | \$0.30   | \$0.60   | \$0.90   |
+| Regular Toppings  | Included | Included | Included |
+| Sauces            | Included | Included | Included |
+| Drinks            | \$2.00   | \$2.50   | \$3.00   |
+| Chips             | \$1.50   | \$1.50   | \$1.50   |
 
 ---
 
-## 💾 Receipt Format
+## 🧪 Screens
 
-Receipts are saved as individual `.txt` files in a `receipts/` folder with this naming format:
+### 🏠 Home Screen
 
 ```
-yyyyMMdd-HHmmss.txt
-Example: 20230527-141502.txt
+==== Home ====
+1) New Order
+0) Exit
 ```
 
-Each receipt contains:
+### 🧾 Order Screen
 
-* Full sandwich breakdown
-* Drink and chip items
-* Total price
+```
+1. Add Sandwich
+2. Add Drink
+3. Add Chips
+4. Checkout
+5. Signature Sandwich
+0. Cancel Order
+```
 
----
+### 🥪 Add Sandwich
 
-## 📜 Application Screens
+* Choose bread
+* Select size
+* Add meat, cheese, regular toppings, sauces
+* Choose toasted or not
 
-### Home Screen
+### ⭐ Signature Sandwich Menu
 
-* `1) New Order`
-* `0) Exit`
-
-### Order Screen
-
-* `1) Add Sandwich`
-* `2) Add Drink`
-* `3) Add Chips`
-* `4) Checkout`
-* `0) Cancel Order`
-
-### Add Sandwich
-
-* Select Bread: White, Wheat, Rye, Wrap
-* Select Size: 4", 8", 12"
-* Add Meats (Premium): Steak, Ham, Salami, Roast Beef, Chicken, Bacon
-* Add Cheese (Premium): American, Provolone, Cheddar, Swiss
-* Add Regular Toppings: Lettuce, Peppers, Onions, Tomatoes, Jalapeños, etc.
-* Add Sauces: Mayo, Mustard, Ranch, etc.
-* Choose Toasted or Not
-
-### Add Drink
-
-* Choose size (Small, Medium, Large)
-* Enter flavor
-
-### Add Chips
-
-* Enter chip type (e.g., BBQ, Sour Cream, Original)
-
-### Checkout
-
-* Displays full order details
-* `1) Confirm` – Saves receipt and returns to home screen
-* `0) Cancel` – Discards order and returns to home screen
+* Choose from BLT, Philly Cheese Steak, or Veggie Delight
+* Optionally customize toppings afterward
 
 ---
 
-## 🍪 Pricing
+## 📄 Receipt Output
 
-### Sandwich Prices (by Size & Bread)
+* Created inside `receipts/` folder
+* File format: `yyyyMMdd-HHmmss.txt`
+* Contains:
 
-| Bread Type | 4"     | 8"     | 12"    |
-| ---------- | ------ | ------ | ------ |
-| Any Bread  | \$5.50 | \$7.00 | \$8.50 |
-
-### Premium Toppings
-
-| Topping      | 4"     | 8"     | 12"    |
-| ------------ | ------ | ------ | ------ |
-| Meats        | \$1.00 | \$2.00 | \$3.00 |
-| Extra Meat   | \$0.50 | \$1.00 | \$1.50 |
-| Cheese       | \$0.75 | \$1.50 | \$2.25 |
-| Extra Cheese | \$0.30 | \$0.60 | \$0.90 |
-
-### Regular Toppings & Sauces
-
-Included with sandwich (no extra cost)
-
-### Sides
-
-| Item  | Small  | Medium | Large  |
-| ----- | ------ | ------ | ------ |
-| Drink | \$2.00 | \$2.50 | \$3.00 |
-| Chips | \$1.50 | —      | —      |
+  * Sandwich details (bread, size, toppings, toasted status)
+  * Chips and drinks
+  * Total cost
 
 ---
 
-## 🔧 Bonus Feature (Optional)
+## 🧰 Technologies Used
 
-Signature Sandwich Templates:
+* Java 17+
+* OOP (Abstraction, Inheritance, Polymorphism)
+* File I/O: `BufferedWriter`, `File`
+* Enums for fixed topping types
+* Scanner for user input
+* Git for version control
 
-* Pre-built sandwiches based on `Sandwich` class
-* User can customize further (add/remove toppings)
+---
 
-### Examples:
+## 🗂️ Folder Structure
 
-**BLT**
+```
+src/
+├── com.pluralsight.model         // Sandwich, Order, Chips, Drink
+├── com.pluralsight.toppings      // Topping, Cheese, Meat, Sauce, RegularTopping
+├── com.pluralsight.enums         // Enum types for toppings
+├── com.pluralsight.ui            // ConsoleUI interaction
+├── com.pluralsight.data          // OrderFileManager for receipt saving
+├── com.pluralsight.signatures    // Signature sandwich subclasses
+```
 
-* 8" White Bread, Bacon, Cheddar, Lettuce, Tomato, Ranch, Toasted
+---
 
-**Philly Cheese Steak**
+## ✅ Setup Instructions
 
-* 8" White Bread, Steak, American Cheese, Peppers, Mayo, Toasted
+1. Clone the repository into your capstones directory:
+
+```bash
+git clone https://github.com/yourusername/DELIcious.git
+```
+
+2. Open project in IntelliJ
+3. Run `Main.java`
+4. Enjoy building sandwiches!
+
+---
+
+## 📝 Sample Commit Messages
+
+* `Create base Sandwich and Order classes`
+* `Implement pricing logic for premium toppings`
+* `Add receipt generation with timestamped filenames`
+* `Support signature sandwich customization`
+* `Fix meat removal logic and recalculate price`
+
+---
+
+## 🚀 Stretch Goals
+
+* Add a frontend using JavaFX or React
+* Save orders to a database
+* Implement loyalty rewards or promo codes
+* Add login system for staff/cashiers
+
+---
+
+## 📂 Author
+
+Created by Wardah Salman for the Pluralsight Capstone 2 Project.
