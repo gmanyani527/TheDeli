@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+
+
 public class ConsuleUI {
     Scanner scanner = new Scanner(System.in);
     private List<Sandwich> sandwich;
@@ -91,6 +94,9 @@ public class ConsuleUI {
                     break;
                 case 4:
                     displayCheckout();
+                    break;
+                case 5:
+                    displaySignatureSandwichMenu();
                     break;
 
             }

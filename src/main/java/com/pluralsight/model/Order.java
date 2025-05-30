@@ -75,7 +75,7 @@ public class Order {
         String input = scanner.nextLine();
 
         if (input.equalsIgnoreCase("yes")) {
-           OrderFileManager.generateReceipt(this); 
+           OrderFileManager.generateReceipt(this);
             System.out.println("Order completed. Returning to Home.");
         } else {
             System.out.println("Order canceled.");
