@@ -10,12 +10,13 @@ import com.pluralsight.model.Drink;
 import com.pluralsight.model.Order;
 import com.pluralsight.model.Sandwich;
 import com.pluralsight.toppings.*;
+import com.pluralsight.signatures.BLT;
+import com.pluralsight.signatures.PhillyCheeseSteak;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-
+import java.util.stream.IntStream;
 
 
 public class ConsuleUI {
@@ -293,6 +294,90 @@ public class ConsuleUI {
 
 
     }
+    public void displaySignatureSandwichMenu() {
+        System.out.println("\nChoose a Signature Sandwich:");
+        System.out.println("1) BLT");
+        System.out.println("2) Philly Cheese Steak");
+        System.out.print("Enter your choice: ");
+
+        int choice = Integer.parseInt(scanner.nextLine());
+        Sandwich sandwich = null;
+
+        switch (choice) {
+            case 1:
+                sandwich = new BLT();
+                break;
+            case 2:
+                sandwich = new PhillyCheeseSteak();
+                break;
+            default:
+                System.out.println("Invalid choice. Returning to order screen.");
+                return;
+        }
+
+        System.out.println("Would you like to customize this sandwich? (yes/no): ");
+        String input = scanner.nextLine();
+        if (input.equalsIgnoreCase("yes")) {
+            customizeSandwich(sandwich);
+        }
+
+        currentOrder.addSandwich(sandwich);
+        System.out.println("Signature sandwich added to your order.");
+    }
+    public void customizeSandwich(Sandwich sandwich) {
+        boolean customizing = true;
+        while (customizing) {
+            System.out.println("\nCustomize Sandwich:");
+            System.out.println("1) Remove a Topping");
+            System.out.println("2) Add a Regular Topping");
+            System.out.println("3) Done");
+            System.out.print("Choose an option: ");
+            int choice = Integer.parseInt(scanner.nextLine());
+
+            switch (choice) {
+                case 1:
+                    List<Topping> toppings = sandwich.getToppings();
+                    IntStream.range(0, toppings.size())
+                            .forEach(i -> System.out.println((i + 1) + ") " + toppings.get(i).getName()));
+
+                    System.out.print("Enter number of topping to remove: ");
+                    int index = Integer.parseInt(scanner.nextLine()) - 1;
+                    if (index >= 0 && index < toppings.size()) {
+                        toppings.remove(index);
+                        System.out.println("Topping removed.");
+                    } else {
+                        System.out.println("Invalid index.");
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Choose a regular topping to add:");
+                    RegularToppingType[] types = RegularToppingType.values();
+                    for (int i = 0; i < types.length; i++) {
+                        System.out.println((i + 1) + ") " + types[i].getDisplayName());
+                    }
+                    int toppingChoice = Integer.parseInt(scanner.nextLine()) - 1;
+                    if (toppingChoice >= 0 && toppingChoice < types.length) {
+                        sandwich.getToppings().add(new RegularTopping(types[toppingChoice]));
+                        System.out.println("Topping added.");
+                    } else {
+                        System.out.println("Invalid choice.");
+                    }
+                    break;
+
+                case 3:
+                    customizing = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
+    }
+
+
+
+
 
 }
 
