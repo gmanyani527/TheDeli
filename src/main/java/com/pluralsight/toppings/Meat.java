@@ -23,15 +23,20 @@ public class Meat extends Topping {
 
     @Override
     public double getCost(String size) {
-        double baseCost = 1.00;
+        double baseCost = 0;
 
-        // Optional: vary cost by meat type
+        // Set base cheese cost by size
+        if (size.equalsIgnoreCase("Small")) {
+            baseCost = 1.00;
+            if (extra) baseCost += 0.50;
+        } else if (size.equalsIgnoreCase("Medium")) {
+            baseCost = 2.00;
+            if (extra) baseCost += 1.00;
+        } else if (size.equalsIgnoreCase("Large")) {
+            baseCost = 3.00;
+            if (extra) baseCost += 1.50;
+        }
 
-
-        // Optional: vary by sandwich size
-        if (size.equalsIgnoreCase("Medium")) baseCost += 1.00;
-        if (size.equalsIgnoreCase("Large")) baseCost += 2.00;
-
-        return extra ? baseCost * 2 : baseCost;
+        return baseCost;
     }
 }

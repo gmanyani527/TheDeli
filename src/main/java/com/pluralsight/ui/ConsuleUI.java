@@ -316,22 +316,23 @@ public class ConsuleUI {
 
     }
     public void displaySignatureSandwichMenu() {
-        System.out.println("\nChoose a Signature Sandwich:");
+        System.out.println("\n╔══════════════════════════════╗");
+        System.out.println("║    Choose a Signature Sub    ║");
+        System.out.println("╚══════════════════════════════╝");
         System.out.println("1) BLT");
         System.out.println("2) Philly Cheese Steak");
         System.out.println("3) Veggie Delight");
-        System.out.print("Enter your choice: ");
+        System.out.print("Enter your choice (1-3): ");
+        int choice = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Choose size for your signature sandwich:");
+        System.out.println("\nSelect Size:");
         System.out.println("1) Small (4\")");
         System.out.println("2) Medium (8\")");
         System.out.println("3) Large (12\")");
         System.out.print("Enter size (1-3): ");
         int size = Integer.parseInt(scanner.nextLine());
 
-        int choice = Integer.parseInt(scanner.nextLine());
         Sandwich sandwich = null;
-
         switch (choice) {
             case 1:
                 sandwich = new BLT(size);
@@ -347,22 +348,24 @@ public class ConsuleUI {
                 return;
         }
 
-        System.out.println("Would you like to customize this sandwich? (yes/no): ");
+        System.out.print("\nWould you like to customize this sandwich? (yes/no): ");
         String input = scanner.nextLine();
         if (input.equalsIgnoreCase("yes")) {
             customizeSandwich(sandwich);
         }
 
         currentOrder.addSandwich(sandwich);
-        System.out.println("Signature sandwich added to your order.");
+        System.out.println("✔️  Signature sandwich added to your order.");
     }
+
     public void customizeSandwich(Sandwich sandwich) {
         boolean customizing = true;
         while (customizing) {
             System.out.println("\nCustomize Sandwich:");
             System.out.println("1) Remove a Topping");
             System.out.println("2) Add a Regular Topping");
-            System.out.println("3) Done");
+            System.out.println("3) Add Meat");
+            System.out.println("4) Done");
             System.out.print("Choose an option: ");
             int choice = Integer.parseInt(scanner.nextLine());
 
@@ -398,6 +401,22 @@ public class ConsuleUI {
                     break;
 
                 case 3:
+                    System.out.println("Choose meat to add:");
+                    MeatType[] meats = MeatType.values();
+                    for (int i = 0; i < meats.length; i++) {
+                        System.out.println((i + 1) + ") " + meats[i].getDisplayName());
+                    }
+                    int meatChoice = Integer.parseInt(scanner.nextLine()) - 1;
+                    if (meatChoice >= 0 && meatChoice < meats.length) {
+                        System.out.print("Extra meat? (yes/no): ");
+                        boolean extra = scanner.nextLine().equalsIgnoreCase("yes");
+                        sandwich.addTopping(new Meat(meats[meatChoice], extra));
+                        System.out.println("Meat added.");
+                    } else {
+                        System.out.println("Invalid choice.");
+                    }
+                    break;
+                case 4:
                     customizing = false;
                     break;
 

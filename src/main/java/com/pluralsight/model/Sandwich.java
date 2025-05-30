@@ -58,14 +58,30 @@ public class Sandwich {
     }
 
 
-    public double getCalculatePrice(){
+    public double getCalculatePrice() {
         double total = 0.0;
 
+        // Add base price by size
+        switch (size) {
+            case 1: // Small
+                total += 5.50;
+                break;
+            case 2: // Medium
+                total += 7.00;
+                break;
+            case 3: // Large
+                total += 8.50;
+                break;
+        }
+
+        // Add premium topping prices
         for (Topping topping : toppings) {
             total += topping.getCost(getSizeAsString());
         }
+
         return total;
     }
+
     public void addTopping(Topping topping) {
         toppings.add(topping);
     }
