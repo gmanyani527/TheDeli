@@ -46,6 +46,7 @@ public class Sandwich {
         StringBuilder sb = new StringBuilder();
         sb.append("Bread: ").append(bread).append("\n");
         sb.append("Size: ").append(getSizeAsString()).append("\n");
+        sb.append("Toasted: ").append(toasted ? "Yes" : "No").append("\n");
         sb.append("Toppings:\n");
         for (Topping t : toppings) {
             sb.append(" - ").append(t.getName()).append("\n");

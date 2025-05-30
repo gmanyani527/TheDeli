@@ -7,9 +7,9 @@ import com.pluralsight.toppings.*;
 import java.util.ArrayList;
 
 public class PhillyCheeseSteak extends Sandwich {
-    public PhillyCheeseSteak() {
+    public PhillyCheeseSteak(int size) {
         super(
-                8, // size
+                size, // size
                 "White", // bread
                 new ArrayList<>() {{
                     add(new Meat(MeatType.STEAK, false));

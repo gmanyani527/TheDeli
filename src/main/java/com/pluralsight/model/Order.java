@@ -59,7 +59,7 @@ public class Order {
 
         for (int i = 0; i < sandwiches.size(); i++) {
             System.out.println("Sandwich #" + (i + 1) + ":");
-            sandwiches.get(i).getDetails();
+            System.out.println(sandwiches.get(i).getDetails());
         }
 
         for (Drink drink : drinks) {
@@ -71,15 +71,7 @@ public class Order {
         }
 
         System.out.printf("TOTAL: $%.2f\n", calculateTotal());
-        System.out.print("Confirm order? (yes/no): ");
-        String input = scanner.nextLine();
 
-        if (input.equalsIgnoreCase("yes")) {
-           OrderFileManager.generateReceipt(this);
-            System.out.println("Order completed. Returning to Home.");
-        } else {
-            System.out.println("Order canceled.");
-        }
     }
 
     // Optional: getters if you need them

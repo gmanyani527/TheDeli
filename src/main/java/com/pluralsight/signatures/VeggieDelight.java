@@ -7,9 +7,9 @@ import com.pluralsight.toppings.*;
 import java.util.ArrayList;
 
 public class VeggieDelight extends Sandwich {
-    public VeggieDelight() {
+    public VeggieDelight(int size) {
         super(
-                8, // 8-inch sandwich
+                size, // 8-inch sandwich
                 "Wheat", // bread
                 new ArrayList<>() {{
                     add(new RegularTopping(RegularToppingType.LETTUCE));

@@ -9,6 +9,7 @@ import com.pluralsight.model.Chips;
 import com.pluralsight.model.Drink;
 import com.pluralsight.model.Order;
 import com.pluralsight.model.Sandwich;
+import com.pluralsight.signatures.VeggieDelight;
 import com.pluralsight.toppings.*;
 import com.pluralsight.signatures.BLT;
 import com.pluralsight.signatures.PhillyCheeseSteak;
@@ -80,6 +81,7 @@ public class ConsuleUI {
             System.out.println("2. Add Drink");
             System.out.println("3. Add Chips");
             System.out.println("4. Checkout");
+            System.out.println("5. Signature Sandwich");
             System.out.println("0. Cancel Order");
             int choice = Integer.parseInt(scanner.nextLine());
 
@@ -175,7 +177,7 @@ public class ConsuleUI {
                 System.out.println((i + 1) + ")" + regularToppings[i].getDisplayName());
             }
             int choice2 = Integer.parseInt(scanner.nextLine());
-            RegularToppingType selectedTopping = regularToppings[choice - 1];
+            RegularToppingType selectedTopping = regularToppings[choice2 - 1];
             toppings.add(new RegularTopping(selectedTopping));
 
             System.out.println("Any other topping? ");
@@ -196,8 +198,14 @@ public class ConsuleUI {
 
 
         Sandwich sandwich = new Sandwich(size, bread, toppings);
+
+
+        System.out.print("Would you like your sandwich toasted? (yes/no): ");
+        boolean toasted = scanner.nextLine().equalsIgnoreCase("yes");
+        sandwich.setToasted(toasted);
         currentOrder.addSandwich(sandwich);
         return sandwich;
+
     }
 
 
@@ -250,6 +258,7 @@ public class ConsuleUI {
     return drink;
     }
 
+
     public Chips chooseChips(){
         Scanner scanner = new Scanner(System.in);
         // Choose Bread
@@ -290,7 +299,19 @@ public class ConsuleUI {
     }
 
     public void displayCheckout(){
-        currentOrder.getOrderDetails();
+        currentOrder.getOrderDetails(); // Just displays summary
+
+        System.out.print("Confirm order? (yes/no): ");
+        String input = scanner.nextLine();
+
+        if (input.equalsIgnoreCase("yes")) {
+            OrderFileManager.generateReceipt(currentOrder); // ✅ Save only if confirmed
+            System.out.println("Order completed. Returning to Home.");
+            currentOrder = new Order(); // reset order
+        } else {
+            System.out.println("Order canceled.");
+            currentOrder = new Order(); // reset order even if canceled
+        }
 
 
     }
@@ -298,17 +319,28 @@ public class ConsuleUI {
         System.out.println("\nChoose a Signature Sandwich:");
         System.out.println("1) BLT");
         System.out.println("2) Philly Cheese Steak");
+        System.out.println("3) Veggie Delight");
         System.out.print("Enter your choice: ");
+
+        System.out.println("Choose size for your signature sandwich:");
+        System.out.println("1) Small (4\")");
+        System.out.println("2) Medium (8\")");
+        System.out.println("3) Large (12\")");
+        System.out.print("Enter size (1-3): ");
+        int size = Integer.parseInt(scanner.nextLine());
 
         int choice = Integer.parseInt(scanner.nextLine());
         Sandwich sandwich = null;
 
         switch (choice) {
             case 1:
-                sandwich = new BLT();
+                sandwich = new BLT(size);
                 break;
             case 2:
-                sandwich = new PhillyCheeseSteak();
+                sandwich = new PhillyCheeseSteak(size);
+                break;
+            case 3:
+                sandwich = new VeggieDelight(size);
                 break;
             default:
                 System.out.println("Invalid choice. Returning to order screen.");
